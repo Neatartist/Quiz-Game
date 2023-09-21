@@ -1,0 +1,66 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+a {
+    text-decoration: none;
+    color: black;
+    font-size: 20px;
+}
+
+
+header {
+    background-color: gray;
+}
+header nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 25px;
+    padding: 0 20px;
+}
+
+header nav li {
+    list-style: none;
+    font-size: 20px;
+}   
+
+section {
+    background-color: white;
+    padding: 20px;
+    align-items: center;
+    justify-content: center;
+    border: 5px solid black;
+    width: 70%;
+    margin: 120px auto;
+    padding: 50px;
+    border-style: double;
+}
+section h1 {
+    font-size: 50px;
+    text-align: center;
+    margin: 20px 0;
+}
+
+section p {
+    font-size: 20px;
+    text-align: center;
+    margin: 20px 0;
+}
+
+section button {
+    background-color: blue;
+    color: red;
+    margin: auto;
+    display: block; 
+}
+
+section button:hover {
+    background-color: red;
+    color: blue;
+}
+
+
