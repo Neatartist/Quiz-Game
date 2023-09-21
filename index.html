@@ -1,27 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title> Term quiz</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="./assets/css/style.css">
-    </head>
+  <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <title> Term quiz</title>
+      <meta name="description" content="">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="./assets/css/style.css">
+  </head>
+  <body>
     <header>
         <nav>
-            <div>
-            <li><a id = "View-HighScore" href="">View HighScore</a></li>
-            </div>
-            <li>Time: <span id = timer>0</span></li>
+          <li id=" highscore"> view high scores</li>
+          <li id="time">Time:</li>
         </nav>
     </header>
-    <body>
-        <section>
-            <h1> Coding Quiz Challenge</h1>
-            <p> Try to answer the following code-related questions within the time limit!</p>
-            <button id = "Start">Start Quiz</button>
-        </section>
-        <script src="./assets/js/script.js" async defer></script>
-    </body>
+      <section>
+        <div id="display_main_page">
+          <h1 id=""> Term quiz for coding</h1>
+          <p>Finish the quiz in the alloted time given!</p>
+          <button id="start">Start</button>
+        </div>
+        <div id="display_questions">
+          <h2 id="questions"></h2>
+          <ul id="answers"></ul>
+        </div>
+        <p id="results"></p>
+        <div id="display_end">
+          <h2>You're done</h2>
+          <p>Enter your initials: <textarea id="textarea"></textarea></p>
+          <button id="submit"> Submit Score</button>
+        </div>
+      </section>
+  </body>
+    <script src="./assets/js/script.js" async defer></script>
 </html>

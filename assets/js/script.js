@@ -1,6 +1,6 @@
 const startEl = document.getElementById("#start");
-const main = document.getElementById("#display-quiz");
-const questions = document.getElementById("#questions");
+const main = document.getElementById("#display-main_page");
+const questions = document.getElementById("#display_questions");
 const timeEl = document.getElementById("#time");
 const submitEl = document.getElementById("#submit");
 const highScoreEl = document.getElementById("#highScore");
@@ -8,7 +8,7 @@ const showScoreEl = document.getElementById("#show-score");
 const clearEl = document.getElementById("#clear");
 
 
-// quiz questions for javascript
+
 
 const JAVAQuestions = [
   question1 = {
@@ -61,34 +61,33 @@ const JAVAQuestions = [
   },
 ];
 
-allQuest = ["question1", "question2", "question3", "question4", "question5", "question6", "question7", "question8"]; 
+const allQuest = ["question1", "question2", "question3", "question4", "question5", "question6", "question7", "question8"]; 
 
 // quiz answers for javascript
 
 
-const timer; 
+let timer = null;
 
-if(startEl !== null) {
-  startEl.addEventListener("click", startQuiz) { 
+if (startEl !== null) {
+  startEl.addEventListener("click", function (event) {
     event.preventDefault();
     main.style.display = "none";
-    questions.style.display = "flex";  
+    questions.style.display = "flex";
     timer = 60;
-  
-  const timerInt = setinterval(function() {
-    timer--;
-    timerEl.textContent = "Time" + timer;
-    
-    if(timer === 0 ){
-      clearInterval(timerInt);
-    }
-  }, 1000);
-  const endQuestions = setTimeout(showScoreEl, timer * 1000);
 
-  showQuestions(JAVAQuestions[allQuest[0]], 0, endQuestions, timerInt);
+    const timerInt = setInterval(function () { // Corrected setInterval
+      timer--;
+      timeEl.textContent = "Time: " + timer;
 
-  return;
-  };
+      if (timer === 0) {
+        clearInterval(timerInt);
+      }
+    }, 1000);
+
+    const endQuestions = setTimeout(showScoreEl, timer * 1000);
+
+    showQuestions(JAVAQuestions[allQuest[0]], 0, endQuestions, timerInt);
+  });
 }
 
 // clear local storage and reload the page 
@@ -114,7 +113,7 @@ function showQuestions(question, index, endQuestions, timerInt) {
     ques.setAttribute("id", choices[i]);
     document.querySelector('#answers').children[i].appendChild(ques);
 
-    if(choices[i] === "correct" ){
+    if (choices[i] === "Correct") {
       document.querySelector('#answers').children[i].addEventListener("click", function () {
         for(let i = 0; i < choices.length; i++){
           document.querySelector('#answers').children[0].remove();
@@ -143,58 +142,58 @@ function showQuestions(question, index, endQuestions, timerInt) {
 }
 }
 
-function shuffleArray(choices ) {
-  const currentValue = choices.length;
-  const randomValue;
-  const temp; 
+function shuffleArray(choices) {
+  let currentValue = choices.length;
+  let randomValue;
+  let temp;
 
-  while (currentValue != 0) {
+  while (currentValue !== 0) {
     randomValue = Math.floor(Math.random() * currentValue);
     currentValue--;
 
     temp = choices[currentValue];
-
     choices[currentValue] = choices[randomValue];
     choices[randomValue] = temp;
   }
   return choices;
 }
 
-function showScoreEl(){
+function showScoreEl() {
   questions.style.display = "none";
-  showScoreEl.style.display = "flex";
+  showScoreEl.style.display = "block"; 
 
-  if(timer < 0){
+  if (timer < 0) {
     timer = 0;
   }
 
-  timerEl.textContent = "time"+ timer;
 
-  document.querySelector('#final-score').textContent = "your final score is" + timer;
+  timeEl.textContent = "Time: " + timer;
+
+  document.querySelector('#final-score').textContent = "Your final score is: " + timer;
+
 
   submitEl.addEventListener('click', function (event) {
     const userInfo = {
       name: userInitials.value,
       score: timer
     };
-    if(userInitials.value === null || userInitials.value === ""){
-      userInfo['name'] = "unknown"; 
+    if (userInitials.value === null || userInitials.value === "") {
+      userInfo['name'] = "unknown";
     }
     const startScores = [];
-    const prevScores = JSON.parsel(localStorage.getItem("scores"));
+    const prevScores = JSON.parse(localStorage.getItem("scores"));
 
-    if(prevScores !== null){
+    if (prevScores !== null) {
       sortScores(startScores, prevScores);
-    }
-    else  {
+    } else {
       startScores.push(userInfo);
       localStorage.setItem("scores", JSON.stringify(startScores));
     }
-    location.replace("replace later ")
-  }); 
+    location.replace("replace later "); 
+  });
 }
 
-function sortScores(prevScores, startScores) {
+function sortScores(prevScores, userInfo ) {
   const newIndex = 0; 
   for(let i = 0; i < prevScores.length; i++){
     if(userInfo[score] <= prevScores[i][prevScores]){
@@ -221,3 +220,5 @@ function  highScoreDisplay(){
     }
   }
 };
+
+highScoreDisplay();
